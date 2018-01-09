@@ -25,9 +25,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hengyi.fastvideoplayer.library.mediaplayer.IRenderView;
 import com.hengyi.fastvideoplayer.library.mediaplayer.IjkVideoView;
@@ -121,8 +123,8 @@ public class FastVideoPlayer extends RelativeLayout{
 	private int defaultTimeout = 3000;
 	private int screenWidthPixels;
 
-	private ImageView coverImage = null;
-	//public ImageView settingImage = null,shareImage = null;//封面图
+	private ImageView coverImage = null;//封面图
+	//public ImageView settingImage = null,shareImage = null;
 
 	public FastVideoPlayer(Context context) {
 		this(context, null);
@@ -152,7 +154,7 @@ public class FastVideoPlayer extends RelativeLayout{
 				doPauseResume();
 				show(defaultTimeout);
 			} else if (v.getId() == R.id.view_jky_player_center_play) {
-				doPauseResume();
+				play(url,currentPosition);
 				show(defaultTimeout);
 			} else if (v.getId() == R.id.app_video_finish) {
 				if (!fullScreenOnly && !portrait) {
@@ -192,12 +194,19 @@ public class FastVideoPlayer extends RelativeLayout{
 		this.defaultRetryTime = defaultRetryTime;
 	}
 
-	private int currentPosition;
+	private int currentPosition = 0;
 	private boolean fullScreenOnly;
 
 	public FastVideoPlayer setTitle(CharSequence title) {
 		$.id(R.id.app_video_title).text(title);
 		return this;
+	}
+
+	public void setUrl(String url){
+		if(url.contains("https"))
+			url = url.replace("https","http");
+		this.url = url;
+		$.id(R.id.view_jky_player_center_control).visible();
 	}
 
 	private void doPauseResume() {
@@ -368,7 +377,7 @@ public class FastVideoPlayer extends RelativeLayout{
 					}
 					break;
 				case MESSAGE_RESTART_PLAY:
-					play(url);
+					play();
 					break;
 			}
 		}
@@ -388,20 +397,22 @@ public class FastVideoPlayer extends RelativeLayout{
 		screenWidthPixels = activity.getResources().getDisplayMetrics().widthPixels;
 		$ = new Query(activity);
 		contentView = View.inflate(context, R.layout.view_fastvideo_player, this);
-
-
 //		settingImage = contentView.findViewById(R.id.view_jky_play_iv_setting);
 //		shareImage = contentView.findViewById(R.id.view_jky_player_iv_share);
 		coverImage = contentView.findViewById(R.id.app_video_cover_image);
-
 		videoView = contentView.findViewById(R.id.video_view);
 		videoView.setOnCompletionListener(new IMediaPlayer.OnCompletionListener() {
 					@Override
 					public void onCompletion(IMediaPlayer mp) {
 						statusChange(STATUS_COMPLETED);
+						$.id(R.id.view_jky_player_center_control).visible();
+						$.id(R.id.view_jky_player_center_play).image(R.drawable.ic_center_play);
+						currentPosition = 0;
+						coverImage.setVisibility(View.VISIBLE);
 						oncomplete.run();
 					}
 				});
+
 		videoView.setOnErrorListener(new IMediaPlayer.OnErrorListener() {
 			@Override
 			public boolean onError(IMediaPlayer mp, int what, int extra) {
@@ -719,11 +730,7 @@ public class FastVideoPlayer extends RelativeLayout{
 	 * @param url
 	 *            播放视频的地址
 	 */
-	public void play(String url) {
-		this.url = url;
-		//处理播放地址 因为这个框架不支持https
-		if(url.contains("https"))
-			url = url.replace("https","http");
+	public void play() {
 		play(url, 0);
 	}
 

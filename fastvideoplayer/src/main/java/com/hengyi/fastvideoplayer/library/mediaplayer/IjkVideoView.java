@@ -46,6 +46,9 @@ import tv.danmaku.ijk.media.player.AndroidMediaPlayer;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.player.TextureMediaPlayer;
+
+import static tv.danmaku.ijk.media.player.IMediaPlayer.*;
+
 public class IjkVideoView extends FrameLayout implements
 		MediaController.MediaPlayerControl {
 	private String TAG = "IjkVideoView";
@@ -84,11 +87,11 @@ public class IjkVideoView extends FrameLayout implements
 	private int mSurfaceHeight;
 	private int mVideoRotationDegree;
 	private IMediaController mMediaController;
-	private IMediaPlayer.OnCompletionListener mOnCompletionListener;
-	private IMediaPlayer.OnPreparedListener mOnPreparedListener;
+	private OnCompletionListener mOnCompletionListener;
+	private OnPreparedListener mOnPreparedListener;
 	private int mCurrentBufferPercentage;
-	private IMediaPlayer.OnErrorListener mOnErrorListener;
-	private IMediaPlayer.OnInfoListener mOnInfoListener;
+	private OnErrorListener mOnErrorListener;
+	private OnInfoListener mOnInfoListener;
 	private long mSeekWhenPrepared; // recording the seek position while
 									// preparing
 	private boolean mCanPause = true;
@@ -439,7 +442,7 @@ public class IjkVideoView extends FrameLayout implements
 		}
 	}
 
-	IMediaPlayer.OnVideoSizeChangedListener mSizeChangedListener = new IMediaPlayer.OnVideoSizeChangedListener() {
+	OnVideoSizeChangedListener mSizeChangedListener = new OnVideoSizeChangedListener() {
 		public void onVideoSizeChanged(IMediaPlayer mp, int width, int height,
 				int sarNum, int sarDen) {
 			mVideoWidth = mp.getVideoWidth();
@@ -458,7 +461,7 @@ public class IjkVideoView extends FrameLayout implements
 		}
 	};
 
-	IMediaPlayer.OnPreparedListener mPreparedListener = new IMediaPlayer.OnPreparedListener() {
+	OnPreparedListener mPreparedListener = new OnPreparedListener() {
 		public void onPrepared(IMediaPlayer mp) {
 			mCurrentState = STATE_PREPARED;
 
@@ -521,7 +524,7 @@ public class IjkVideoView extends FrameLayout implements
 		}
 	};
 
-	private IMediaPlayer.OnCompletionListener mCompletionListener = new IMediaPlayer.OnCompletionListener() {
+	private OnCompletionListener mCompletionListener = new OnCompletionListener() {
 		public void onCompletion(IMediaPlayer mp) {
 			mCurrentState = STATE_PLAYBACK_COMPLETED;
 			mTargetState = STATE_PLAYBACK_COMPLETED;
@@ -534,13 +537,13 @@ public class IjkVideoView extends FrameLayout implements
 		}
 	};
 
-	private IMediaPlayer.OnInfoListener mInfoListener = new IMediaPlayer.OnInfoListener() {
+	private OnInfoListener mInfoListener = new OnInfoListener() {
 		public boolean onInfo(IMediaPlayer mp, int arg1, int arg2) {
 			if (mOnInfoListener != null) {
 				mOnInfoListener.onInfo(mp, arg1, arg2);
 			}
 			switch (arg1) {
-			case IMediaPlayer.MEDIA_INFO_VIDEO_ROTATION_CHANGED:
+			case MEDIA_INFO_VIDEO_ROTATION_CHANGED:
 				mVideoRotationDegree = arg2;
 				Log.d(TAG, "MEDIA_INFO_VIDEO_ROTATION_CHANGED: " + arg2);
 				if (mRenderView != null)
@@ -551,7 +554,7 @@ public class IjkVideoView extends FrameLayout implements
 		}
 	};
 
-	private IMediaPlayer.OnErrorListener mErrorListener = new IMediaPlayer.OnErrorListener() {
+	private OnErrorListener mErrorListener = new OnErrorListener() {
 		public boolean onError(IMediaPlayer mp, int framework_err, int impl_err) {
 			Log.d(TAG, "Error: " + framework_err + "," + impl_err);
 			mCurrentState = STATE_ERROR;
@@ -604,7 +607,7 @@ public class IjkVideoView extends FrameLayout implements
 		}
 	};
 
-	private IMediaPlayer.OnBufferingUpdateListener mBufferingUpdateListener = new IMediaPlayer.OnBufferingUpdateListener() {
+	private OnBufferingUpdateListener mBufferingUpdateListener = new OnBufferingUpdateListener() {
 		public void onBufferingUpdate(IMediaPlayer mp, int percent) {
 			mCurrentBufferPercentage = percent;
 		}
@@ -617,7 +620,7 @@ public class IjkVideoView extends FrameLayout implements
 	 * @param l
 	 *            The callback that will be run
 	 */
-	public void setOnPreparedListener(IMediaPlayer.OnPreparedListener l) {
+	public void setOnPreparedListener(OnPreparedListener l) {
 		mOnPreparedListener = l;
 	}
 
@@ -628,7 +631,7 @@ public class IjkVideoView extends FrameLayout implements
 	 * @param l
 	 *            The callback that will be run
 	 */
-	public void setOnCompletionListener(IMediaPlayer.OnCompletionListener l) {
+	public void setOnCompletionListener(OnCompletionListener l) {
 		mOnCompletionListener = l;
 	}
 
@@ -640,7 +643,7 @@ public class IjkVideoView extends FrameLayout implements
 	 * @param l
 	 *            The callback that will be run
 	 */
-	public void setOnErrorListener(IMediaPlayer.OnErrorListener l) {
+	public void setOnErrorListener(OnErrorListener l) {
 		mOnErrorListener = l;
 	}
 
@@ -651,7 +654,7 @@ public class IjkVideoView extends FrameLayout implements
 	 * @param l
 	 *            The callback that will be run
 	 */
-	public void setOnInfoListener(IMediaPlayer.OnInfoListener l) {
+	public void setOnInfoListener(OnInfoListener l) {
 		mOnInfoListener = l;
 	}
 
@@ -999,5 +1002,4 @@ public class IjkVideoView extends FrameLayout implements
 			}
 		}
 	}
-
 }
