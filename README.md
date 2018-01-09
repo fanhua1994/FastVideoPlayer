@@ -1,8 +1,8 @@
 # FastVideoPlayer
 基于ijkplayer开发万能播放器，支持点播、直播播放。
 
-![]()
-![]()
+![](https://github.com/fanhua1994/FastVideoPlayer/blob/master/image/B43F89B4D9B5AE374BB9AE8A966D2006.png?raw=true)
+![](https://github.com/fanhua1994/FastVideoPlayer/blob/master/image/16CDF9C1CDBD0E54F934E532C8351A5B.jpg?raw=true)
 
 
 # 如何引用
