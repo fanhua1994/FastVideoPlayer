@@ -98,6 +98,7 @@ public class IjkVideoView extends FrameLayout implements
 	private boolean mCanSeekBack;
 	private boolean mCanSeekForward;
 
+
 	/** Subtitle rendering widget overlaid on top of the video. */
 	// private RenderingWidget mSubtitleWidget;
 
@@ -309,7 +310,6 @@ public class IjkVideoView extends FrameLayout implements
 				IjkMediaPlayer ijkMediaPlayer = null;
 				if (mUri != null) {
 					ijkMediaPlayer = new IjkMediaPlayer();
-					//TODO 设置是否打印debug （调试的时候使用IjkMediaPlayer.IJK_LOG_DEBUG，上线的时候使用IjkMediaPlayer.IJK_LOG_ERROR）
 					ijkMediaPlayer
 							.native_setLogLevel(IjkMediaPlayer.IJK_LOG_DEBUG);
 

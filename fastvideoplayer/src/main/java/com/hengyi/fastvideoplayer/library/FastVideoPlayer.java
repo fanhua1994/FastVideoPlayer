@@ -203,6 +203,7 @@ public class FastVideoPlayer extends RelativeLayout{
 	}
 
 	public void setUrl(String url){
+
 		if(url.contains("https"))
 			url = url.replace("https","http");
 		this.url = url;

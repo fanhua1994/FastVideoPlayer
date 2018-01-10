@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
         play = findViewById(R.id.play);
         videoPlayer.setLive(false);//是直播还是点播  false为点播
         videoPlayer.setScaleType(FastVideoPlayer.SCALETYPE_FITXY);
-        videoPlayer.setTitle("TiDB宣传视频");//设置标题
-        videoPlayer.setUrl("https://download.pingcap.com/videos/pingcap-intro-converted.mp4");
+        videoPlayer.setTitle("天猫精灵宣传视频");//设置标题
+        videoPlayer.setUrl("https://g.alicdn.com/forest/ai-labs-portal-web/0.6.8/video/main.mp4");
 
         //封面图加载
-        Glide.with(this).load("https://download.pingcap.com/images/video-poster.jpg").into(videoPlayer.getCoverImage());
+        Glide.with(this).load("https://bot.tmall.com/guide/img/guide1-bg760.png").into(videoPlayer.getCoverImage());
 
         play.setOnClickListener(new View.OnClickListener(){
 
