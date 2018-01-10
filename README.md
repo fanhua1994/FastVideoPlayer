@@ -29,21 +29,56 @@ dependencies {
 ```
 
 ```
-superPlayer = findViewById(R.id.super_player);
-    play = findViewById(R.id.play);
-    superPlayer.setLive(false);//是直播还是点播  false为点播
-    superPlayer.setScaleType(FastVideoPlayer.SCALETYPE_FITXY);
-    superPlayer.setTitle("TiDB宣传视频");//设置标题
-    superPlayer.setUrl("https://download.pingcap.com/videos/pingcap-intro-converted.mp4");
+videoPlayer = findViewById(R.id.fastvideo_player);
+videoPlayer.setLive(false);//是直播还是点播  false为点播
+videoPlayer.setScaleType(FastVideoPlayer.SCALETYPE_FITXY);
+videoPlayer.setTitle("TiDB宣传视频");//设置标题
+videoPlayer.setUrl("https://download.pingcap.com/videos/pingcap-intro-converted.mp4");
+videoPlayer.play();//自动播放
+//封面图加载
+Glide.with(this).load("https://download.pingcap.com/images/video-poster.jpg").into(videoPlayer.getCoverImage());
+```
+```
+/**
+ * 下面的这几个Activity的生命状态很重要
+ */
+@Override
+protected void onPause() {
+    super.onPause();
+    if (videoPlayer != null) {
+        videoPlayer.onPause();
+    }
+}
 
-    //封面图加载
-    Glide.with(this).load("https://download.pingcap.com/images/video-poster.jpg").into(superPlayer.getCoverImage());
+@Override
+protected void onResume() {
+    super.onResume();
+    if (videoPlayer != null) {
+        videoPlayer.onResume();
+    }
+}
 
-    play.setOnClickListener(new View.OnClickListener(){
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+    if (videoPlayer != null) {
+        videoPlayer.onDestroy();
+    }
+}
 
-        @Override
-        public void onClick(View v) {
-            superPlayer.play();
-        }
-    });
+@Override
+public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    if (videoPlayer != null) {
+        videoPlayer.onConfigurationChanged(newConfig);
+    }
+}
+
+@Override
+public void onBackPressed() {
+    if (videoPlayer != null && videoPlayer.onBackPressed()) {
+        return;
+    }
+    super.onBackPressed();
+}
 ```
