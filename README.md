@@ -23,7 +23,7 @@ dependencies {
 # demo演示
 ```
 <com.hengyi.fastvideoplayer.library.FastVideoPlayer
-    android:id="@+id/super_player"
+    android:id="@+id/fastvideo_player"
     android:layout_width="match_parent"
     android:layout_height="200dp"></com.hengyi.fastvideoplayer.library.FastVideoPlayer>
 ```

@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        superPlayer = findViewById(R.id.super_player);
+        superPlayer = findViewById(R.id.fastvideo_player);
         play = findViewById(R.id.play);
         superPlayer.setLive(false);//是直播还是点播  false为点播
         superPlayer.setScaleType(FastVideoPlayer.SCALETYPE_FITXY);
