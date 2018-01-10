@@ -21,6 +21,13 @@ dependencies {
 ```
 
 # demo演示
+AndroidMainist.xml
+```
+ <activity android:name=".MainActivity"
+    android:configChanges="orientation|screenSize|keyboardHidden">
+</activity>
+```
+
 ```
 <com.hengyi.fastvideoplayer.library.FastVideoPlayer
     android:id="@+id/fastvideo_player"
