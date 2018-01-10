@@ -22,6 +22,13 @@ dependencies {
 
 # demo演示
 ```
+<com.hengyi.fastvideoplayer.library.FastVideoPlayer
+    android:id="@+id/super_player"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"></com.hengyi.fastvideoplayer.library.FastVideoPlayer>
+    ```
+
+```
 superPlayer = findViewById(R.id.super_player);
     play = findViewById(R.id.play);
     superPlayer.setLive(false);//是直播还是点播  false为点播
