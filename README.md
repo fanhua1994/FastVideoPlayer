@@ -26,7 +26,7 @@ dependencies {
     android:id="@+id/super_player"
     android:layout_width="match_parent"
     android:layout_height="200dp"></com.hengyi.fastvideoplayer.library.FastVideoPlayer>
-    ```
+```
 
 ```
 superPlayer = findViewById(R.id.super_player);
