@@ -25,6 +25,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -674,7 +675,7 @@ public class IjkVideoView extends FrameLayout implements
 	IRenderView.IRenderCallback mSHCallback = new IRenderView.IRenderCallback() {
 		@Override
 		public void onSurfaceChanged(
-				IRenderView.ISurfaceHolder holder, int format, int w,
+				@NonNull IRenderView.ISurfaceHolder holder, int format, int w,
 				int h) {
 			if (holder.getRenderView() != mRenderView) {
 				Log.e(TAG, "onSurfaceChanged: unmatched render callback\n");
@@ -696,7 +697,7 @@ public class IjkVideoView extends FrameLayout implements
 
 		@Override
 		public void onSurfaceCreated(
-				IRenderView.ISurfaceHolder holder, int width,
+				@NonNull IRenderView.ISurfaceHolder holder, int width,
 				int height) {
 			if (holder.getRenderView() != mRenderView) {
 				Log.e(TAG, "onSurfaceCreated: unmatched render callback\n");
@@ -711,7 +712,8 @@ public class IjkVideoView extends FrameLayout implements
 		}
 
 		@Override
-		public void onSurfaceDestroyed(IRenderView.ISurfaceHolder holder) {
+		public void onSurfaceDestroyed(
+				@NonNull IRenderView.ISurfaceHolder holder) {
 			if (holder.getRenderView() != mRenderView) {
 				Log.e(TAG, "onSurfaceDestroyed: unmatched render callback\n");
 				return;
