@@ -26,8 +26,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -130,8 +128,8 @@ public class TextureRenderView extends TextureView implements IRenderView {
 		private TextureRenderView mTextureView;
 		private SurfaceTexture mSurfaceTexture;
 
-		public InternalSurfaceHolder(@NonNull TextureRenderView textureView,
-				@Nullable SurfaceTexture surfaceTexture) {
+		public InternalSurfaceHolder( TextureRenderView textureView,
+				 SurfaceTexture surfaceTexture) {
 			mTextureView = textureView;
 			mSurfaceTexture = surfaceTexture;
 		}
@@ -158,25 +156,25 @@ public class TextureRenderView extends TextureView implements IRenderView {
 			}
 		}
 
-		@NonNull
+
 		@Override
 		public IRenderView getRenderView() {
 			return mTextureView;
 		}
 
-		@Nullable
+
 		@Override
 		public SurfaceHolder getSurfaceHolder() {
 			return null;
 		}
 
-		@Nullable
+
 		@Override
 		public SurfaceTexture getSurfaceTexture() {
 			return mSurfaceTexture;
 		}
 
-		@Nullable
+
 		@Override
 		public Surface openSurface() {
 			if (mSurfaceTexture == null)
@@ -213,7 +211,7 @@ public class TextureRenderView extends TextureView implements IRenderView {
 		private WeakReference<TextureRenderView> mWeakRenderView;
 		private Map<IRenderCallback, Object> mRenderCallbackMap = new ConcurrentHashMap<IRenderCallback, Object>();
 
-		public SurfaceCallback(@NonNull TextureRenderView renderView) {
+		public SurfaceCallback( TextureRenderView renderView) {
 			mWeakRenderView = new WeakReference<TextureRenderView>(renderView);
 		}
 
@@ -221,7 +219,7 @@ public class TextureRenderView extends TextureView implements IRenderView {
 			mOwnSurfaceTecture = ownSurfaceTecture;
 		}
 
-		public void addRenderCallback(@NonNull IRenderCallback callback) {
+		public void addRenderCallback( IRenderCallback callback) {
 			mRenderCallbackMap.put(callback, callback);
 
 			ISurfaceHolder surfaceHolder = null;
@@ -240,7 +238,7 @@ public class TextureRenderView extends TextureView implements IRenderView {
 			}
 		}
 
-		public void removeRenderCallback(@NonNull IRenderCallback callback) {
+		public void removeRenderCallback(IRenderCallback callback) {
 			mRenderCallbackMap.remove(callback);
 		}
 
