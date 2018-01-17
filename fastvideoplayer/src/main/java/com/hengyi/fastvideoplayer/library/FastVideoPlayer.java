@@ -25,11 +25,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hengyi.fastvideoplayer.library.listener.FastVideoPlayerScreenListener;
 import com.hengyi.fastvideoplayer.library.mediaplayer.IRenderView;
@@ -710,6 +708,9 @@ public class FastVideoPlayer extends RelativeLayout{
 		handler.removeCallbacksAndMessages(null);
 		videoView.stopPlayback();
 		release();
+		if(screenListener != null){
+			screenListener = null;
+		}
 	}
 
 	/**

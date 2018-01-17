@@ -34,17 +34,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        videoPlayer.setScreenListener(new FastVideoPlayerScreenListener() {
-            @Override
-            public void onFullScreen() {
-                Toast.makeText(MainActivity.this,"进入全屏",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSmallScreen() {
-                Toast.makeText(MainActivity.this,"进入小屏",Toast.LENGTH_SHORT).show();
-            }
-        });
+//        videoPlayer.setScreenListener(new FastVideoPlayerScreenListener() {
+//            @Override
+//            public void onFullScreen() {
+//                Toast.makeText(MainActivity.this,"进入全屏",Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onSmallScreen() {
+//                Toast.makeText(MainActivity.this,"进入小屏",Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     /**
