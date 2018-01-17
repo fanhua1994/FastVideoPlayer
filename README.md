@@ -16,7 +16,7 @@ allprojects {
 ```
 ```
 dependencies {
-        compile 'com.github.fanhua1994:FastVideoPlayer:1.0.2'
+        compile 'com.github.fanhua1994:FastVideoPlayer:1.0.3'
 }
 ```
 
@@ -44,6 +44,20 @@ videoPlayer.setUrl("https://download.pingcap.com/videos/pingcap-intro-converted.
 videoPlayer.play();//自动播放
 //封面图加载
 Glide.with(this).load("https://download.pingcap.com/images/video-poster.jpg").into(videoPlayer.getCoverImage());
+```
+屏幕监听
+```
+videoPlayer.setScreenListener(new FastVideoPlayerScreenListener() {
+    @Override
+    public void onFullScreen() {
+        Toast.makeText(MainActivity.this,"进入全屏",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSmallScreen() {
+        Toast.makeText(MainActivity.this,"进入小屏",Toast.LENGTH_SHORT).show();
+    }
+});
 ```
 ```
 /**
