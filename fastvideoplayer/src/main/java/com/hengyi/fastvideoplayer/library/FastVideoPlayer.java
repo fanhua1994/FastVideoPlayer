@@ -31,6 +31,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hengyi.fastvideoplayer.library.listener.FastVideoPlayerScreenListener;
 import com.hengyi.fastvideoplayer.library.mediaplayer.IRenderView;
 import com.hengyi.fastvideoplayer.library.mediaplayer.IjkVideoView;
 import com.hengyi.fastvideoplayer.library.utils.NetUtils;
@@ -124,7 +125,7 @@ public class FastVideoPlayer extends RelativeLayout{
 	private int screenWidthPixels;
 
 	private ImageView coverImage = null;//封面图
-	//public ImageView settingImage = null,shareImage = null;
+	private FastVideoPlayerScreenListener screenListener = null;
 
 	public FastVideoPlayer(Context context) {
 		this(context, null);
@@ -635,6 +636,7 @@ public class FastVideoPlayer extends RelativeLayout{
 		portrait = newConfig.orientation == Configuration.ORIENTATION_PORTRAIT;
 		doOnConfigurationChanged(portrait);
 	}
+
 	private void doOnConfigurationChanged(final boolean portrait) {
 		if (videoView != null && !fullScreenOnly) {
 			handler.post(new Runnable() {
@@ -727,9 +729,7 @@ public class FastVideoPlayer extends RelativeLayout{
 
 	/**
 	 * 开始播放
-	 *
-	 * @param url
-	 *            播放视频的地址
+	 * 播放视频的地址
 	 */
 	public void play() {
 		play(url, 0);
@@ -978,12 +978,17 @@ public class FastVideoPlayer extends RelativeLayout{
 	 * 更新全屏按钮
 	 */
 	private void updateFullScreenButton() {
-		if (getScreenOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {// 全屏幕
+		if (!portrait) {// 全屏幕
+			if(screenListener != null)
+				screenListener.onFullScreen();
 			$.id(R.id.view_jky_player_fullscreen).image(
 					R.drawable.ic_not_fullscreen);
 			//$.id(R.id.view_jky_player_iv_share).gone();
 			//$.id(R.id.view_jky_play_iv_setting).visible();
+
 		} else {
+			if(screenListener != null)
+				screenListener.onSmallScreen();
 			$.id(R.id.view_jky_player_fullscreen).image(R.drawable.ic_enlarge);
 			//$.id(R.id.view_jky_player_iv_share).visible();
 			//$.id(R.id.view_jky_play_iv_setting).gone();
@@ -1520,5 +1525,12 @@ public class FastVideoPlayer extends RelativeLayout{
 	public ImageView getCoverImage(){
 		coverImage.setVisibility(View.VISIBLE);
 		return coverImage;
+	}
+
+	/**
+	 * 设置屏幕监听
+	 */
+	public void setScreenListener(FastVideoPlayerScreenListener listener){
+		this.screenListener = listener;
 	}
 }
