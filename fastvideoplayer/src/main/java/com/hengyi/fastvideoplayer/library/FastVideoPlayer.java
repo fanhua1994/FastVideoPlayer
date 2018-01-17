@@ -499,6 +499,14 @@ public class FastVideoPlayer extends RelativeLayout{
 						break;
 				}
 
+				switch (motionEvent.getAction()) {
+					case MotionEvent.ACTION_MOVE:
+						getParent().requestDisallowInterceptTouchEvent(true);
+						break;
+					case MotionEvent.ACTION_UP:
+						getParent().requestDisallowInterceptTouchEvent(false);
+						break;
+				}
 				return false;
 			}
 		});
