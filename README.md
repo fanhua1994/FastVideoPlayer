@@ -16,7 +16,7 @@ allprojects {
 ```
 ```
 dependencies {
-        compile 'com.github.fanhua1994:FastVideoPlayer:1.0.3'
+        compile 'com.github.fanhua1994:FastVideoPlayer:1.0.6'
 }
 ```
 
