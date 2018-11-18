@@ -3,14 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FastVideoPlayer.iml" filepath="$PROJECT_DIR$/FastVideoPlayer.iml" />
-      <module fileurl="file://E:\Repo\FastVideoPlayer\FastVideoPlayer.iml" filepath="E:\Repo\FastVideoPlayer\FastVideoPlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://E:\Repo\FastVideoPlayer\app\app.iml" filepath="E:\Repo\FastVideoPlayer\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastvideoplayer/fastvideoplayer.iml" filepath="$PROJECT_DIR$/fastvideoplayer/fastvideoplayer.iml" />
-      <module fileurl="file://E:\Repo\FastVideoPlayer\fastvideoplayer\fastvideoplayer.iml" filepath="E:\Repo\FastVideoPlayer\fastvideoplayer\fastvideoplayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/ijkplayerlibrary/ijkplayerlibrary.iml" filepath="$PROJECT_DIR$/ijkplayerlibrary/ijkplayerlibrary.iml" />
-      <module fileurl="file://E:\Repo\FastVideoPlayer\ijkplayerlibrary\ijkplayerlibrary.iml" filepath="E:\Repo\FastVideoPlayer\ijkplayerlibrary\ijkplayerlibrary.iml" />
-      <module fileurl="file://F:\GitHub\FastVideoPlayer\fastvideoplayer\superplayerlibrary.iml" filepath="F:\GitHub\FastVideoPlayer\fastvideoplayer\superplayerlibrary.iml" />
     </modules>
   </component>
 </project>
