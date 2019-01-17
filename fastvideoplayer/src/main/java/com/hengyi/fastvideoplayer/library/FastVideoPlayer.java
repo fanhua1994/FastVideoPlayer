@@ -1443,9 +1443,7 @@ public class FastVideoPlayer extends RelativeLayout{
 			}
 			if (NetUtils.getNetworkType(activity) == 3) {// 网络是WIFI
 				onNetChangeListener.onWifi();
-			} else if (NetUtils.getNetworkType(activity) == 2
-					|| NetUtils.getNetworkType(activity) == 4) {// 网络不是手机网络或者是以太网
-				// TODO 更新状态是暂停状态
+			} else if (NetUtils.getNetworkType(activity) == 2	|| NetUtils.getNetworkType(activity) == 4) {// 网络不是手机网络或者是以太网
 				statusChange(STATUS_PAUSE);
 				videoView.pause();
 				updatePausePlay();
